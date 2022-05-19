@@ -1,11 +1,25 @@
 import './App.css';
+import {
+    Contacts,
+    Navbar,
+    AddContact,
+    Contact,
+    EditContact,
+    ViewContact,
+    SearchContact,
+    Spinner
+} from "./components";
+import {useState} from "react";
 
 const App = () => {
+
+    const [getContacts, setContacts] = useState([]);
+    const [loading, setLoading] = useState(false);
+
     return (
         <div className="App">
-            <h3>اپ مدیریت مخاطبین </h3>
-            <span className="fa fa-user"></span>
-            <button className="btn btn-outline-danger"><i className="fas fa-address-book"></i> دکمه</button>
+            <Navbar/>
+            <Contacts contacts={getContacts} loading={loading}/>
         </div>
     );
 }
