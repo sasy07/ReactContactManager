@@ -1,0 +1,34 @@
+{
+  "contacts": [
+    {
+      "fullname": "ساسان غفوری فرد",
+      "photo": "https://avatars.githubusercontent.com/u/22424257?v=4",
+      "mobile": "09163357023",
+      "email": "mrlost@yahoo.com",
+      "group": 1,
+      "id": 1
+    }
+  ],
+  "groups": [
+    {
+      "id": 1,
+      "name": "همکار"
+    },
+    {
+      "id": 2,
+      "name": "دوست"
+    },
+    {
+      "id": 3,
+      "name": "فامیل"
+    },
+    {
+      "id": 4,
+      "name": "سرویس"
+    },
+    {
+      "id": 5,
+      "name": "آشنا"
+    }
+  ]
+}
