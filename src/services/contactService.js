@@ -2,49 +2,49 @@ import axios from "axios";
 const SERVER_URL = "http://localhost:9000";
 
 // @desc Get All Contacts
-// @route http://localhost:9000/contacts
+// @route Get http://localhost:9000/contacts
 export const getAllContacts = ()=>{
     const url = `${SERVER_URL}/contacts`
     return axios.get(url);
 }
 
 // @desc Get Contact with ID
-// @route http://localhost:9000/contacts/:contactId
+// @route Get http://localhost:9000/contacts/:contactId
 export const getContact =(contactId)=>{
     const url = `${SERVER_URL}/contacts/${contactId}`
     return axios.get(url);
 }
 
 // @desc Get All Groups
-// @route http://localhost:9000/groups
+// @route Get http://localhost:9000/groups
 export const getAllGroups= ()=>{
     const url = `${SERVER_URL}/groups`
     return axios.get(url);
 }
 
 // @desc Get Group with ID
-// @route http://localhost:9000/groups/:groupId
+// @route Get http://localhost:9000/groups/:groupId
 export const getGroup =(groupsId)=>{
     const url = `${SERVER_URL}/groups/${groupsId}`
     return axios.get(url);
 }
 
 // @desc Add New Contact
-// @route http://localhost:9000/contacts
+// @route Post http://localhost:9000/contacts
 export const createContact =(contact)=>{
     const url = `${SERVER_URL}/contacts`
     return axios.post(url,contact);
 }
 
 // @desc Edit Contact
-// @route http://localhost:9000/contacts/:contactId
+// @route Put http://localhost:9000/contacts/:contactId
 export const updateContact =(contact,contactId)=>{
     const url = `${SERVER_URL}/contacts/${contactId}`
     return axios.put(url,contact);
 }
 
 // @desc Delete Contact
-// @route http://localhost:9000/contacts/:contactId
+// @route Delete http://localhost:9000/contacts/:contactId
 export const deleteContact =(contact,contactId)=>{
     const url = `${SERVER_URL}/contacts/${contactId}`
     return axios.delete(url);
