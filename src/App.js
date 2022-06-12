@@ -6,6 +6,7 @@ import { createContact, getAllContacts, getAllGroups } from "./services/contactS
 
 const App = () => {
   const [loading, setLoading] = useState(false);
+  const [forceRender, setForceRender] = useState(false);
   const [getContacts, setContacts] = useState([]);
   const [getGroups, setGroups] = useState([]);
   const [getContact, setContact] = useState({
@@ -33,23 +34,42 @@ const App = () => {
     fetchData();
   }, []);
   const navigate = useNavigate();
-const createContactForm= async(event) =>{
-  event.preventDefault();
-  try {
-  const {status} = await createContact(getContact);
-  if(status === 201){
-    setContact({});
-navigate("/contacts");
-  }  
-  } catch (error) {
-    console.log(error.message)
+  const createContactForm = async (event) => {
+    event.preventDefault();
+    try {
+      const { status } = await createContact(getContact);
+      if (status === 201) {
+        setForceRender(!forceRender);
+        setContact({});
+        navigate("/contacts");
+      }
+    } catch (error) {
+      console.log(error.message)
+    }
   }
-}
-const setContactInfo=(event)=>{
-  setContact({...getContact,
-    [event.target.name] 
-    : event.target.value});
-}
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+        const { data: contactsData } = await getAllContacts();
+        setContacts(contactsData);
+        setLoading(false);
+      } catch (error) {
+        console.log(error.message);
+        setLoading(false);
+      }
+    };
+    fetchData();
+  }, [forceRender])
+
+  const setContactInfo = (event) => {
+    setContact({
+      ...getContact,
+      [event.target.name]
+        : event.target.value
+    });
+  }
 
   return (
     <div className="App">
@@ -61,12 +81,12 @@ const setContactInfo=(event)=>{
           element={<Contacts contacts={getContacts}
             loading={loading} />}
         />
-        <Route path="/contacts/add" 
-        element={<AddContact loading={loading} 
-        setContactInfo = {setContactInfo} 
-        contact = {getContact}
-        createContactForm = {createContactForm}
-        groups = {getGroups}/>} />
+        <Route path="/contacts/add"
+          element={<AddContact loading={loading}
+            setContactInfo={setContactInfo}
+            contact={getContact}
+            createContactForm={createContactForm}
+            groups={getGroups} />} />
         <Route path="/contacts/:contactId" element={<ViewContact />} />
         <Route path="/contacts/edit/:contactId" element={<EditContact />} />
       </Routes>
