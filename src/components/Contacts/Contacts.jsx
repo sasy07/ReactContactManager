@@ -8,7 +8,7 @@ const Contacts = ({contacts, loading}) => {
         <>
             <section className="container">
                 <div className="grid">
-                    <div className="row">
+                    <div className="row pt-2">
                         <div className="col">
                             <p className="h3">
                                 <button className="btn mx-2"
