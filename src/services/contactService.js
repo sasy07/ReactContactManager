@@ -45,7 +45,7 @@ export const updateContact =(contact,contactId)=>{
 
 // @desc Delete Contact
 // @route Delete http://localhost:9000/contacts/:contactId
-export const deleteContact =(contact,contactId)=>{
+export const deleteContact =(contactId)=>{
     const url = `${SERVER_URL}/contacts/${contactId}`
     return axios.delete(url);
 }
