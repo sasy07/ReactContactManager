@@ -2,7 +2,7 @@ import SearchContact from "./Contacts/SearchContact";
 import {BACKGROUND, PURPLE} from "../helpers/colors";
 import {useLocation} from 'react-router-dom'
 
-const Navbar = ({query, search}) => {
+const Navbar = () => {
     const location = useLocation()
     return (
         <nav className="navbar navbar-dark navbar-expand-sm shadow-lg"
@@ -21,7 +21,7 @@ const Navbar = ({query, search}) => {
                     {
                         location.pathname === "/contacts" ? (
                             <div className="col">
-                                <SearchContact query={query} search={search}/>
+                                <SearchContact/>
                             </div>
                         ) : null}
 
