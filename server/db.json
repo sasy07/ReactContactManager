@@ -26,6 +26,15 @@
       "job": "الکترونیک",
       "group": "2",
       "id": 4
+    },
+    {
+      "fullname": "امین ضیاغم",
+      "photo": "https://media-exp2.licdn.com/dms/image/C4D03AQEVO01XivlhLQ/profile-displayphoto-shrink_200_200/0/1647379812473?e=1660780800&v=beta&t=6z5xVdzdkVxRPECvcuRte99r9DqwowMH8_Wlm9o16Oc",
+      "mobile": "09130022333",
+      "email": "amin.ziagham@gmail.com",
+      "job": "برنامه نویس",
+      "group": "2",
+      "id": 6
     }
   ],
   "groups": [

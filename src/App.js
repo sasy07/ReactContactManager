@@ -37,13 +37,27 @@ const App = () => {
     const createContactForm = async (event) => {
         event.preventDefault();
         try {
-            const {status} = await createContact(contact);
+            const {status, data} = await createContact(contact);//get new contact and copy to data
+            setLoading(true);
+            /*
+            * NOTE (Show New Contact)
+            *   1- Rerender -> forceRender , setForceRender
+            *   2- setContact(data)  (OK)
+            */
+            debugger;
             if (status === 201) {
+                const allContacts = [...contacts, data];//Clone contacts and copy contacts and data(new contact) to allContacts
+
+                setContacts(allContacts);
+                setFilteredContacts(allContacts);
+
                 setContact({});
+                setLoading((prevLoading) => !prevLoading);
                 navigate("/contacts");
             }
         } catch (error) {
             console.log(error.message)
+            setLoading((prevLoading) => !prevLoading);
         }
     }
 
@@ -69,13 +83,21 @@ const App = () => {
                         <p style={{color: FOREGROUND}}>
                             مطمئنی میخوای {contactFullname} رو پاک کنی
                         </p>
-                        <button onClick={() => {
-                            removeContact(contactId);
-                            onClose();
-                        }}
-                                className="btn mx-2" style={{backgroundColor: COMMENT}}>مطمئن هستم
+                        <button
+                            onClick={() => {
+                                removeContact(contactId);
+                                onClose();
+                            }}
+                            className="btn mx-2"
+                            style={{ backgroundColor: PURPLE }}
+                        >
+                            مطمئن هستم
                         </button>
-                        <button onClick={onClose} className={"btn"}>
+                        <button
+                            onClick={onClose}
+                            className="btn"
+                            style={{ backgroundColor: COMMENT }}
+                        >
                             انصراف
                         </button>
                     </div>
@@ -129,16 +151,10 @@ const App = () => {
                     <Route path="/" element={<Navigate to="/contacts"/>}/>
                     <Route
                         path="/contacts"
-                        element={<Contacts contacts={filteredContacts}
-                                           confirmDelete={confirmDelete}
-                                           loading={loading}/>}
+                        element={<Contacts/>}
                     />
                     <Route path="/contacts/add"
-                           element={<AddContact loading={loading}
-                                                setContactInfo={onContactChange}
-                                                contact={contact}
-                                                createContactForm={createContactForm}
-                                                groups={groups}/>}/>
+                           element={<AddContact/>}/>
                     <Route path="/contacts/:contactId" element={<ViewContact/>}/>
                     <Route path="/contacts/edit/:contactId"
                            element={<EditContact/>}/>
